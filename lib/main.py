@@ -80,7 +80,7 @@ def show(priority):
     for task in tasks:
         click.echo(Fore.YELLOW + Back.BLACK + f'Priority: [{task.priority}]  {task.task_name}')
 
-cli.add_command(welcome)
+# cli.add_command(welcome)
 cli.add_command(add)
 cli.add_command(delete)
 cli.add_command(show)
