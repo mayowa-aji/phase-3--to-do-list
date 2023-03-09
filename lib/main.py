@@ -7,7 +7,6 @@ from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 
-# commands = ["add" ,"delete","show"]
 commands = ["""
 **********************************************************************************
 
@@ -52,20 +51,21 @@ Base.metadata.create_all(engine)
 os.system('cls' if os.name=='nt' else 'clear')
 
 @click.group()
-# @click.command(context_settings = CONTEXT_SETTINGS)
 def cli():
     pass
 
 def welcome():
     message = '''
 
-  wWw  wWw   .-.     wWw  wWw         \/        .-.  (o)__(o)    (o)__(o)\ \  // wW  Ww oo_
-  (O)  (O) c(O_O)c   (O)  (O)        (OO)     c(O_O)c (__  __)    (__  __)(o)(o) (O)(O)/  _)-<
-  ( \  / ),'.---.`,  / )  ( \      ,'.--.)   ,'.---.`, (  )        (  )  ||  ||  (..) \__ `.
-   \ \/ // /|_|_|\ \/ /    \ \    / /|_|_\   / /|_|_|\ \ )(          )(   |(__)|   ||     `. |
-    \o / | \_____/ || \____/ |    | \_.--.  | \_____/ | (  )        (  )  /.--.\  _||_    _| |
-   _/ /  '. `---' .`'. `--' .`    '.   \) \ '. `---' .` )/          )/  -'    `-(_/\_),-'   |
-  (_.'     `-...-'    `-..-'        `-.(_.'   `-...-'   (           (                 (_..--'
+  
+ __   __  _______  __   __    _______  _______  _______    _______  __   __  ___   _______    __  
+|  | |  ||       ||  | |  |  |       ||       ||       |  |       ||  | |  ||   | |       |  |  | 
+|  |_|  ||   _   ||  | |  |  |    ___||   _   ||_     _|  |_     _||  |_|  ||   | |  _____|  |  | 
+|       ||  | |  ||  |_|  |  |   | __ |  | |  |  |   |      |   |  |       ||   | | |_____   |  | 
+|_     _||  |_|  ||       |  |   ||  ||  |_|  |  |   |      |   |  |       ||   | |_____  |  |__| 
+  |   |  |       ||       |  |   |_| ||       |  |   |      |   |  |   _   ||   |  _____| |   __  
+  |___|  |_______||_______|  |_______||_______|  |___|      |___|  |__| |__||___| |_______|  |__| 
+
 
 
    Welcome to YOU GOT THIS!! An application that allows you to organize your day by creating, listing and deleting completed tasks. ENJOY!!
@@ -114,12 +114,11 @@ def display(priority):
     """Let me see what I have to do """
     tasks = session.query(Task).order_by(Task.priority).all()
     for task in tasks:
-        click.echo(Fore.BLUE + Back.BLACK + f'Priority: [{task.priority}]  {task.task_name}')
+        click.echo(Fore.GREEN + Back.BLACK + f'Priority: [{task.priority}]  {task.task_name}')
 
 
 
 @click.command()
-# @click.option('--run', help = "Runs the programme")
 def run():
     welcome()
     while quithandler.is_quit == False:
@@ -135,7 +134,16 @@ def run():
 def quit():
     quithandler.is_quit = True
     os.system('cls' if os.name=='nt' else 'clear')
-    click.echo("Have a great day!")
+    click.echo('''
+    
+ __   __  _______  __   __  _______    _______    _______  ______    _______  _______  _______    ______   _______  __   __  __  
+|  | |  ||   _   ||  | |  ||       |  |   _   |  |       ||    _ |  |       ||   _   ||       |  |      | |   _   ||  | |  ||  | 
+|  |_|  ||  |_|  ||  |_|  ||    ___|  |  |_|  |  |    ___||   | ||  |    ___||  |_|  ||_     _|  |  _    ||  |_|  ||  |_|  ||  | 
+|       ||       ||       ||   |___   |       |  |   | __ |   |_||_ |   |___ |       |  |   |    | | |   ||       ||       ||  | 
+|       ||       ||       ||    ___|  |       |  |   ||  ||    __  ||    ___||       |  |   |    | |_|   ||       ||_     _||__| 
+|   _   ||   _   | |     | |   |___   |   _   |  |   |_| ||   |  | ||   |___ |   _   |  |   |    |       ||   _   |  |   |   __  
+|__| |__||__| |__|  |___|  |_______|  |__| |__|  |_______||___|  |_||_______||__| |__|  |___|    |______| |__| |__|  |___|  |__| 
+''')
 
 cli.add_command(add)
 cli.add_command(delete)
