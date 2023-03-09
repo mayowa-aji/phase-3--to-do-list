@@ -33,12 +33,12 @@ def welcome():
     message = '''
 
   wWw  wWw   .-.     wWw  wWw         \/        .-.  (o)__(o)    (o)__(o)\ \  // wW  Ww oo_
-  (O)  (O) c(O_O)c   (O)  (O)        (OO)     c(O_O)c(__  __)    (__  __)(o)(o) (O)(O)/  _)-<
+  (O)  (O) c(O_O)c   (O)  (O)        (OO)     c(O_O)c (__  __)    (__  __)(o)(o) (O)(O)/  _)-<
   ( \  / ),'.---.`,  / )  ( \      ,'.--.)   ,'.---.`, (  )        (  )  ||  ||  (..) \__ `.
    \ \/ // /|_|_|\ \/ /    \ \    / /|_|_\   / /|_|_|\ \ )(          )(   |(__)|   ||     `. |
-    \o / | \_____/ || \____/ |    | \_.--.  | \_____/ |(  )        (  )  /.--.\  _||_    _| |
+    \o / | \_____/ || \____/ |    | \_.--.  | \_____/ | (  )        (  )  /.--.\  _||_    _| |
    _/ /  '. `---' .`'. `--' .`    '.   \) \ '. `---' .` )/          )/  -'    `-(_/\_),-'   |
-  (_.'     `-...-'    `-..-'        `-.(_.'   `-...-'  (           (                 (_..--'
+  (_.'     `-...-'    `-..-'        `-.(_.'   `-...-'   (           (                 (_..--'
 
     '''
     click.echo(Fore.CYAN + Back.BLACK+ message)
@@ -78,9 +78,9 @@ def show(priority):
     """Let me see what I have to do """
     tasks = session.query(Task).order_by(Task.priority).all()
     for task in tasks:
-        click.echo(Fore.YELLOW + Back.BLACK + f'Priority: [{task.priority}]  {task.task_name}')
+        click.echo(Fore.BLUE + Back.BLACK + f'Priority: [{task.priority}]  {task.task_name}')
 
-# cli.add_command(welcome)
+cli.add_command(welcome)
 cli.add_command(add)
 cli.add_command(delete)
 cli.add_command(show)
